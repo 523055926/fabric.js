@@ -1692,8 +1692,7 @@
       var utils = fabric.util, origParams = utils.saveObjectTransform(this),
           originalGroup = this.group,
           originalShadow = this.shadow, abs = Math.abs,
-          retinaScaling = options.enableRetinaScaling ? Math.max(fabric.devicePixelRatio, 1) : 1,
-          multiplier = (options.multiplier || 1) * retinaScaling;
+          multiplier = (options.multiplier || 1) * (options.enableRetinaScaling ? fabric.devicePixelRatio : 1);
       delete this.group;
       if (options.withoutTransform) {
         utils.resetObjectTransform(this);

@@ -64,7 +64,10 @@
   function getImage(filename, original, callback) {
     if (fabric.isLikelyNode && original) {
       var plainFileName = filename.replace('file://', '');
-      if (!fs.existsSync(plainFileName) || QUnit.debug) {
+      try {
+        fs.statSync(plainFileName);
+      }
+      catch (err) {
         var dataUrl = original.toDataURL().split(',')[1];
         console.log('creating original for ', filename);
         fs.writeFileSync(plainFileName, dataUrl, { encoding: 'base64' });
